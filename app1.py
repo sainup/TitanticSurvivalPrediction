@@ -7,8 +7,11 @@ startTime = datetime.now()
 import pathlib
 from pathlib import Path
 
-temp = pathlib.PosixPath
-pathlib.PosixPath = pathlib.WindowsPath
+import os
+
+if os.name == "nt":  # Check if the OS is Windows
+    temp = pathlib.PosixPath
+    pathlib.PosixPath = pathlib.WindowsPath
 
 filename = "model.sv"
 model = pickle.load(open(filename, 'rb'))
